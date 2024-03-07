@@ -1,40 +1,34 @@
 import exercise1.*;
 
+import java.time.LocalDateTime;
+
 
 public class Main {
     public static void main(String[] args) {
-        //istanze a partire dalla classe Dipendente
-//        Dipendente dipendente1=new Dipendente("54120058765",2000,Dipartimento.VENDITE);
-//        Dipendente dipendente2= new Dipendente("2897611235",2800,Dipartimento.PRODUZIONE);
-//        Dipendente dipendente3= new Dipendente("15921476800",3500,Dipartimento.AMMINISTRAZIONE);
-//
-//
-//
-//        Dipendente[] dipendenti={dipendente1,dipendente2,dipendente3};
-//
-//
-//
-//        for (int i = 0; i <dipendenti.length; i++) {
-//            Dipendente dipendenteCorrente= dipendenti[i];
-//            System.out.println("La matricola del " + dipendenti[i]+"é:" + dipendenti[i].getMatricola());
+        Dirigente dirigenteAmministrativo = new Dirigente(Dipartimento.AMMINISTRAZIONE);
+        DipendenteFullTime fullTime = new DipendenteFullTime(1500, Dipartimento.VENDITE);
+        DipendentePartTime partTime = new DipendentePartTime(15, Dipartimento.PRODUZIONE);
+        partTime.aggiungiOre(200);
 
+        Dipendente[] arrayDipendenti = {dirigenteAmministrativo, fullTime, partTime};
 
-//
-//        }
-//
-//    }
-
-        Dipendente[] dipendenti = new Dipendente[4];
-       Dipendente dipendenti1 = new DipendenteFullTime("Mario Bianchi", 2000);
-        Dipendente dipendenti3 = new DipendentePartTime("Giorgio DiCaprio", 15);
-       Dipendente dipendenti4 = new Dirigente("Greta Sanchez", 300);
-//
-
-int salarioTotaleDipendenti=0;
-        for (int i = 0; i <dipendenti.length ; i++) {
-            salarioTotaleDipendenti+=dipendenti.calculateSalary();
-            
+        double totaleStipendi = 0;
+        for (Dipendente dipendente : arrayDipendenti) {
+            System.out.println(dipendente);
+            totaleStipendi += dipendente.calculateSalary();
         }
+
+        System.out.println(totaleStipendi);
+
+        Volontario volontario = new Volontario("Pdor", 20, "Figlio di Kmer");
+        Worker[] workers = {(Worker) dirigenteAmministrativo, (Worker) fullTime, (Worker) partTime, volontario};
+
+        for (Worker worker : workers) {
+            worker.checkIn(LocalDateTime.now());
+        }
+
     }
+
+
 
 }

@@ -1,15 +1,15 @@
 package exercise1;
 
 public class DipendenteFullTime extends Dipendente{
-    private int pagaMensile;
-    public DipendenteFullTime(String matricola, int stipendio, Dipartimento dipartimento) {
-        super(matricola, stipendio, dipartimento);
-        this.pagaMensile= pagaMensile;
+
+    public DipendenteFullTime(int stipendio, Dipartimento dipartimento) {
+        super( stipendio, dipartimento);
+
     }
 
     @Override
     public int calculateSalary() {
-        return pagaMensile;
+        return this.stipendio;
 
     }
 }
